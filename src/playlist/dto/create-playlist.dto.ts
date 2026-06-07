@@ -5,6 +5,14 @@ export class creatPlayListDto{
     @IsNotEmpty()
     readonly name;
 
+    @IsString()
+    @IsArray()
+    @IsNumber({},{each:true})
+    readonly songs
+
+    @IsNumber()
+    @IsNotEmpty()
+    readonly user!:number
    
     
 }

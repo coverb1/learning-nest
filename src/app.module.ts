@@ -12,6 +12,7 @@ import { Songs } from './songs/song.entity';
 import { Playlist } from './playlist/playlist.entity';
 import { Artist } from './artitsts/artitits.entity';
 import { User } from './User/user.entity';
+import { PlaylistModule } from './playlist/playlist.module';
 
 @Module({
   imports:[
@@ -26,6 +27,7 @@ import { User } from './User/user.entity';
   synchronize:true
 }),
 SongsModule,
+PlaylistModule
 ],
 controllers:[AppController],
 providers:[AppService,DevconfigServices]

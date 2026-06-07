@@ -14,7 +14,7 @@ export class SongsController {
 
     @Post()
     findAll(@Body() createSong: createSongsDTO) {
-        return this.songsServices.create(createSongsDTO)
+        return this.songsServices.create(createSong)
     }
 
     @Get(':id')
@@ -29,8 +29,6 @@ export class SongsController {
     ) {
         return id
     }
-
-
 
     @Put(':id')
     update() {

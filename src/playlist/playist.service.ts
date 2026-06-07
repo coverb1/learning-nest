@@ -1,49 +1,50 @@
-import  {InjectRepository} from '@nestjs/typeorm'
+import { InjectRepository } from '@nestjs/typeorm'
 import { Playlist } from './playlist.entity'
 import { Songs } from 'src/songs/song.entity'
 import { Injectable } from '@nestjs/common'
-import { Repository } from 'typeorm' 
+import { Repository } from 'typeorm'
 import { User } from 'src/User/user.entity'
+import { creatPlayListDto } from './dto/create-playlist.dto'
 
 @Injectable()
 
-export class PlaylistService{
+export class PlaylistService {
     constructor(
         @InjectRepository(Playlist)
-        private PlayListRepo:Repository<Playlist>,
+        private PlayListRepo: Repository<Playlist>,
 
         @InjectRepository(Songs)
-        private songsRepo:Repository<Songs>,
+        private songsRepo: Repository<Songs>,
 
         @InjectRepository(User)
-        private userRepo:Repository<User>
-    ){}
+        private userRepo: Repository<User>
+    ) { }
 
-async create(playlistDTO:CreatePlayListDto):Promise<Playlist>{
-    const playlist=new Playlist();
-    playlist.name=playlistDTO.name
+    async create(playlistDTO: creatPlayListDto): Promise<Playlist> {
+        const playlist = new Playlist();
+        playlist.name = playlistDTO.name // Here we are giving the playlist name
 
 
-    // A song will be  The array of Ids That we are get we are getting from Dto object
-const  songs=await this.songsRepo.findByIds(playlistDTO.songs)
+        // A song will be  The array of Ids That we are get we are getting from Dto object
+        const songs = await this.songsRepo.findByIds(playlistDTO.songs) //get songs from databse
 
-//sets the relation for the songs with  Playlist entity
+        //sets the relation for the songs with  Playlist entity
 
-playlist.songs=songs;
+        playlist.songs = songs;
 
-// a user will be the Id of  USer We are getting from the request
-//when  we implimented  the user AUthantication this id will become  the logged 
+        // a user will be the Id of  USer We are getting from the request
+        //when  we implimented  the user AUthantication this id will become  the logged 
 
-const user =await this.userRepo.findOneBy({id:playlistDTO.user})
+        const user = await this.userRepo.findOneBy({ id: playlistDTO.user })
 
-if (!user) {
-    throw new Error("User Not Found")
-}
+        if (!user) {
+            throw new Error("User Not Found")
+        }
 
-playlist.user=user
+        playlist.user = user
 
- return this.PlayListRepo.save(playlist)
+        return this.PlayListRepo.save(playlist)
 
-}
+    }
 
 }
