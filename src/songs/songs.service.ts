@@ -20,10 +20,25 @@ export class SongsService{
 
     async create(songsDTO:createSongsDTO):Promise<Songs>{
         const song=new Songs()
+        song.tittle=songsDTO.tittle
+        song.releaseDate=songsDTO.releaseDate,
+        song.duration=songsDTO.duration
 
-        const artits=await this.ArtistRepo.findByIds(songsDTO.artists)
-        song.artist=artits
+if (songsDTO.artists){
+  const artist=await this.SongsRepo.findByIds(songsDTO.artists)
+}
+ return this.SongsRepo.save(song)
+    }
 
-        return this.SongsRepo.save(song)
+    findAll():Promise<Songs[]>{
+        return this.SongsRepo.find()
+    }
+
+    findOne(id:number):Promise<Songs|null>{
+        return this.SongsRepo.findOneBy({id})
+    }
+
+    async remove(id:number):Promise<void>{
+        await this.SongsRepo.delete(id)
     }
 }

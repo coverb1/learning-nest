@@ -32,18 +32,22 @@ export class PlaylistService {
 
         playlist.songs = songs;
 
+
         // a user will be the Id of  USer We are getting from the request
         //when  we implimented  the user AUthantication this id will become  the logged 
 
         const user = await this.userRepo.findOneBy({ id: playlistDTO.user })
+        console.log(user)
 
         if (!user) {
             throw new Error("User Not Found")
         }
 
         playlist.user = user
+        const savedPlaylist = await this.PlayListRepo.save(playlist)
+        console.log(savedPlaylist)
 
-        return this.PlayListRepo.save(playlist)
+        return savedPlaylist
 
     }
 

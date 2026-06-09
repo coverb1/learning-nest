@@ -8,14 +8,14 @@ export class Songs {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column('date')
-    date!:Date
+    @Column('varchar')
+    tittle!:string
     
-    @Column('time')
-    time!:Date
+    @Column('date')
+    releaseDate!:string
 
-    @Column('text')
-    lyrics!:string
+    @Column('time')
+    duration!:string
 
     // One song can have many artists, and one artist can have many songs.
 @ManyToMany(()=>Artist,(artist)=>artist.songs,{cascade:true})
