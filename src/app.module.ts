@@ -13,6 +13,7 @@ import { Playlist } from './playlist/playlist.entity';
 import { Artist } from './artitsts/artitits.entity';
 import { User } from './User/user.entity';
 import { PlaylistModule } from './playlist/playlist.module';
+import { userModule } from './User/user.module';
 
 @Module({
   imports:[
@@ -27,7 +28,8 @@ import { PlaylistModule } from './playlist/playlist.module';
   synchronize:true
 }),
 SongsModule,
-PlaylistModule
+PlaylistModule,
+userModule
 ],
 controllers:[AppController],
 providers:[AppService,DevconfigServices]
