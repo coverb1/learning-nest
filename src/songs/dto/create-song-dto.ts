@@ -8,8 +8,8 @@ export class createSongsDTO{
     readonly tittle!:string;
 
    @IsOptional()
-    readonly artists?:number[]
-
+    readonly artists?:string[]
+    
     @IsNotEmpty()
     @IsDateString()
     readonly releaseDate!:string

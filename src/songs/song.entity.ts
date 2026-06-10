@@ -10,7 +10,7 @@ export class Songs {
 
     @Column('varchar')
     tittle!:string
-    
+
     @Column('date')
     releaseDate!:string
 
