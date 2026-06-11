@@ -7,6 +7,7 @@ import { Songs } from "./song.entity";
 import { Artist } from "src/artitsts/artitits.entity";
 import { UpdateResult } from "typeorm/browser";
 import { UpdateSOngDto } from "./dto/update-songDto";
+import { Pagination,paginate,IPaginationOptions } from 'nestjs-typeorm-paginate';
 
 @Injectable()
 
@@ -57,5 +58,11 @@ if (songsDTO.artists){
       }
 const updatedsong=await this.SongsRepo.save(song)
 return updatedsong
+    }
+
+    async paginate(
+        options:IPaginationOptions,
+    ):Promise<Pagination<Songs>>{
+        return paginate<Songs>(this.SongsRepo,options)
     }
 }
