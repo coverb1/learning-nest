@@ -1,8 +1,11 @@
 
+import { User } from 'src/User/user.entity';
 import {
   Column,
   Entity,
+  JoinColumn,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -15,4 +18,8 @@ export class Artist{
     name!:string
     @Column('text')
     songs!:string
+
+    @OneToOne(()=>User)
+    @JoinColumn()
+    user!:User
 }

@@ -1,15 +1,22 @@
-import { Playlist } from 'src/playlist/playlist.entity';
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Exclude } from "class-transformer";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("user")
+export class User {
 
-export class User{
-    @PrimaryGeneratedColumn()
-    id!:number
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-    @Column('text')
-    name!:string
+  @Column({ unique: true })
+  email!: string;
 
-    @OneToMany(()=>Playlist,(playlist)=>playlist.user)
-    playlists!:Playlist[]
+  @Column()
+  name!: string;
+
+  @Column()
+  lastName!: string;
+
+  @Column()
+  @Exclude()
+  password!: string;
 }

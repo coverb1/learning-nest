@@ -9,13 +9,9 @@ import { User } from "./user.entity";
 
 @Module({
     imports:[
-        TypeOrmModule.forFeature([
-            Playlist,
-            Songs,
-            User
-        ])
-    ],
+        TypeOrmModule.forFeature([User])],
     controllers:[userClassController],
-    providers:[userClassService]
+    providers:[userClassService],
+    exports:[userClassService]
 })
 export class userModule{}

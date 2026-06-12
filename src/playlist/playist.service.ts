@@ -43,7 +43,7 @@ export class PlaylistService {
             throw new Error("User Not Found")
         }
 
-        playlist.user = user
+        // playlist.user = user
         const savedPlaylist = await this.PlayListRepo.save(playlist)
         console.log(savedPlaylist)
 

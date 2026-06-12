@@ -14,31 +14,33 @@ import { Artist } from './artitsts/artitits.entity';
 import { User } from './User/user.entity';
 import { PlaylistModule } from './playlist/playlist.module';
 import { userModule } from './User/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports:[
-  TypeOrmModule.forRoot({
-  type:'postgres',
-  database:'spotifyClone',
-  host:'localhost',
-  port:5432,
-  username:'postgres',
-  password:'kabanyana123cecile.',
-  entities:[Songs,Playlist,Artist,User],
-  synchronize:true
-}),
-SongsModule,
-PlaylistModule,
-userModule
-],
-controllers:[AppController],
-providers:[AppService,DevconfigServices]
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      database: 'spotifyClone',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'kabanyana123cecile.',
+      entities: [Songs, Playlist, Artist, User],
+      synchronize: true
+    }),
+    SongsModule,
+    PlaylistModule,
+    userModule,
+    AuthModule
+  ],
+  controllers: [AppController],
+  providers: [AppService, DevconfigServices]
 })
 
 
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-  // consumer.apply(LoggerMiddleware).forRoutes('songs') //optionn1
-  // consumer.apply(LoggerMiddleware).forRoutes({path:'songs', method:RequestMethod.POST}) //Option2
+    // consumer.apply(LoggerMiddleware).forRoutes('songs') //optionn1
+    // consumer.apply(LoggerMiddleware).forRoutes({path:'songs', method:RequestMethod.POST}) //Option2
   }
 }
