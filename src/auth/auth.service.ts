@@ -3,14 +3,17 @@ import { userClassService } from 'src/User/user.service';
 import * as bcrypt from 'bcrypt'
 import { User } from 'src/User/user.entity';
 import { loginDto } from './dto/login-user.dto';
+import { JwtService } from '@nestjs/jwt';
 
 
 @Injectable()
 export class AuthService {
 
-   constructor(private userService: userClassService) { }
+   constructor(private userService: userClassService,
+private jwtservice:JwtService
+   ) { }
 
-   async FindOne(logindto: loginDto): Promise<User> {
+   async Login(logindto: loginDto): Promise<{accessToken:string}> {
 
       const databaseUser = await this.userService.login(logindto.email)
 
@@ -23,7 +26,10 @@ export class AuthService {
          throw new UnauthorizedException('wrong password')
       }
 
-      return databaseUser
+      const palyload={email:databaseUser.email,sub:databaseUser.id};
+      return{
+accessToken:this.jwtservice.sign(palyload)
+      }
 
    }
 

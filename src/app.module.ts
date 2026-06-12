@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SongsModule } from './songs/songs.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
+
 import { DevconfigServices } from './common/providers/DevconfigService';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -31,7 +32,8 @@ import { AuthModule } from './auth/auth.module';
     SongsModule,
     PlaylistModule,
     userModule,
-    AuthModule
+    AuthModule,
+   
   ],
   controllers: [AppController],
   providers: [AppService, DevconfigServices]

@@ -18,7 +18,7 @@ export class AuthController {
     }
 
     @Post('login')
-    Login(@Body() logindto:loginDto):Promise<User>{
-      return this.authservice.FindOne(logindto)
+    Login(@Body() logindto:loginDto):Promise<{accessToken:string}>{
+      return this.authservice.Login(logindto)
     }
 }
