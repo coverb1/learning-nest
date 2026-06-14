@@ -5,7 +5,6 @@ import { authaconstants } from "./auth.constants";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-
   constructor() {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -38,4 +37,7 @@ async validate(palyload:any){
 //    ↓
 // NestJS attaches it to request.user
 //    ↓
-// Controller reads request.user
+// Controller reads request.user 
+
+
+//  mainly this chekcks what inside the token

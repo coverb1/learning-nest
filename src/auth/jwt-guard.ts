@@ -3,6 +3,6 @@ import { AuthGuard } from "@nestjs/passport";
 
 @Injectable()
 
-export class jwGuard extends AuthGuard('jwt'){}
+export class jwtAuthGuard extends AuthGuard('jwt'){}
 
 // JwtGuard checks token

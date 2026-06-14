@@ -30,6 +30,7 @@
     "pg": "^8.21.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
+    "speakeasy": "^2.0.0",
     "typeorm": "0.3.20"
   },
   "devDependencies": {
@@ -37,6 +38,7 @@
     "@nestjs/schematics": "^11.1.0",
     "@nestjs/testing": "^11.1.24",
     "@types/node": "^25.9.1",
+    "@types/speakeasy": "^2.0.10",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
   }

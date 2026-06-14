@@ -7,10 +7,11 @@ import { User } from 'src/User/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { authaconstants } from './auth.constants';
 import { JwtStrategy } from './jwt.strategy';
+import { ArtitstsModule } from 'src/artitsts/artitsts.module';
 
 @Module({
   
-  imports:[userModule,JwtModule.register({secret:authaconstants.secrete,signOptions:{
+  imports:[userModule,ArtitstsModule,JwtModule.register({secret:authaconstants.secrete,signOptions:{
     expiresIn:"1d"
   }})],
   providers: [AuthService,JwtStrategy],
