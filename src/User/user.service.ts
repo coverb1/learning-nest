@@ -6,6 +6,7 @@ import { createUserDto } from "./dto/create-user.dto";
 import  * as bcrypt from 'bcrypt'
 import { loginDto } from "src/auth/dto/login-user.dto";
 import * as speakeasy from 'speakeasy'
+import { UpdateResult } from "typeorm/browser";
 
 
 @Injectable()
@@ -65,6 +66,12 @@ async findById(id:number):Promise<User|null>{
    } catch (error) {
       throw new UnauthorizedException('error verifying token')
    }
+ }
+
+ async disable2FA(userId:number) : Promise<UpdateResult>{
+   return this.userRepository.update({id:userId},{
+      enable2FA:false
+   })
  }
 }
 
