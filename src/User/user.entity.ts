@@ -18,9 +18,6 @@ export class User {
   lastName!: string;
 
   @Column()
-  Phone!:number;
-
-  @Column()
   @Exclude()
   password!: string;
 

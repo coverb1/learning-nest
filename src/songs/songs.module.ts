@@ -7,7 +7,7 @@ import { Artist } from "src/artitsts/artitits.entity"
 
 import { SongsService } from "./songs.service"
 import { SongsController } from "./songs.controller"
-import { Connection } from "typeorm/browser"
+
 
 @Module({
   imports:[

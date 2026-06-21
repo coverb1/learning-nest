@@ -4,9 +4,8 @@ import { User } from "./user.entity";
 import { Repository } from "typeorm";
 import { createUserDto } from "./dto/create-user.dto";
 import  * as bcrypt from 'bcrypt'
-import { loginDto } from "src/auth/dto/login-user.dto";
 import * as speakeasy from 'speakeasy'
-import { UpdateResult } from "typeorm/browser";
+import { UpdateResult } from "typeorm";
 
 
 @Injectable()

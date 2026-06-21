@@ -18,7 +18,8 @@ export class Playlist {
   name!: string;
 
   // many playlist be long to one user
-
+@Column()
+description!:string
  
 
 @OneToMany(() => Songs, (song) => song.playlist)

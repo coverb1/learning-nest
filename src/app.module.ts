@@ -19,7 +19,7 @@ import { AuthModule } from './auth/auth.module';
 // import { ArtistsModule } from './artists/artists.module';
 import { ArtitstsModule } from './artitsts/artitsts.module';
 import dataSource, { datasourceOptions } from './db/data-source';
-
+import { SeedsModule } from './seeds/seeds.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(datasourceOptions),
@@ -29,6 +29,7 @@ import dataSource, { datasourceOptions } from './db/data-source';
     AuthModule,
     // ArtistsModule,
     ArtitstsModule,
+    SeedsModule,
    
   ],
   controllers: [AppController],

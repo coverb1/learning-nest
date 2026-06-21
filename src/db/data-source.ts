@@ -1,4 +1,8 @@
 import { DataSource, DataSourceOptions } from "typeorm";
+import { User } from "src/User/user.entity";
+import { Songs } from "src/songs/song.entity";
+import { Artist } from "src/artitsts/artitits.entity";
+import { Playlist } from "src/playlist/playlist.entity";
 
 export const datasourceOptions: DataSourceOptions = {
     type: 'postgres',
@@ -8,9 +12,7 @@ export const datasourceOptions: DataSourceOptions = {
     password: 'kabanyana123cecile.',
     database: 'spotifyClone',
 
-    entities: [
-        'dist/**/*.entity.js'
-    ],
+    entities: [User, Songs, Artist, Playlist], // ✅ use classes, not file paths
 
     synchronize: false,
 
