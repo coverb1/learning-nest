@@ -6,9 +6,11 @@ import { UpdateResult } from 'typeorm';
 import { UpdateSOngDto } from './dto/update-songDto';
 import { error } from 'node:console';
 import { Pagination } from 'nestjs-typeorm-paginate';
+import { ApiTags } from '@nestjs/swagger';
 
 
 @Controller('songs')
+@ApiTags('songs')
 export class SongsController {
     constructor(private songsServices: SongsService,
 

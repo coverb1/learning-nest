@@ -8,7 +8,7 @@ import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { DevconfigServices } from './common/providers/DevconfigService';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-
+import { ConfigModule } from '@nestjs/config';
 import { Songs } from './songs/song.entity';
 import { Playlist } from './playlist/playlist.entity';
 import { Artist } from './artitsts/artitits.entity';
@@ -20,6 +20,7 @@ import { AuthModule } from './auth/auth.module';
 import { ArtitstsModule } from './artitsts/artitsts.module';
 import dataSource, { datasourceOptions } from './db/data-source';
 import { SeedsModule } from './seeds/seeds.module';
+import configuration from './config/configuration';
 @Module({
   imports: [
     TypeOrmModule.forRoot(datasourceOptions),
@@ -30,6 +31,11 @@ import { SeedsModule } from './seeds/seeds.module';
     // ArtistsModule,
     ArtitstsModule,
     SeedsModule,
+    ConfigModule.forRoot({
+      envFilePath:['.env.development','.env.production'],
+      isGlobal:true,
+      load:[configuration]
+    })
    
   ],
   controllers: [AppController],

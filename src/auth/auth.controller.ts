@@ -9,19 +9,31 @@ import { enable2FAType } from './types';
 import { Request } from '@nestjs/common';
 import { ValidateTokenDto } from './dto/validate-token-dto';
 import { UpdateResult } from 'typeorm';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
+@ApiTags('auth')
 export class AuthController {
     constructor(
        private userService:userClassService, //sign up
        private authservice:AuthService //login
       ){}
     @Post('Signup')
+    @ApiOperation({summary:'register new user'})
+    @ApiResponse({
+      status:201,
+      description:'user created well'
+    })
     Signup(@Body() userDto:createUserDto):Promise<User>{
       return this.userService.create(userDto)
     }
 
     @Post('login')
+    @ApiOperation({summary:'Login user'})
+    @ApiResponse({
+      status:200,
+      description:'it will give you acces to a token'
+    })
     Login(@Body() logindto:loginDto):Promise<{accessToken:string}>{
       return this.authservice.Login(logindto)
     }
@@ -48,6 +60,10 @@ export class AuthController {
     @UseGuards(jwtAuthGuard)
     disable2FA(@Request() req ) : Promise<UpdateResult>{
       return this.userService.disable2FA(req.user.userId)
+    }
+    @Get('test')
+    testEnviVariable(){
+return this.authservice.getEnviriable()
     }
 }
 //  this are endPoints

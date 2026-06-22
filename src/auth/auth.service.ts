@@ -8,6 +8,7 @@ import { ArtitstsService } from 'src/artitsts/artitsts.service';
 import { enable2FAType, payloadType } from './types';
 import * as speakeasy from 'speakeasy'
 import { UpdateResult } from 'typeorm';
+import { ConfigService } from '@nestjs/config';
 
 
 @Injectable()
@@ -16,7 +17,8 @@ export class AuthService {
    constructor(
       private userService: userClassService,
       private jwtservice: JwtService,
-      private artistServices: ArtitstsService
+      private artistServices: ArtitstsService,
+      private configService:ConfigService
    ) { }
 
    async Login(logindto: loginDto): Promise<{ accessToken: string }> {
@@ -69,6 +71,9 @@ export class AuthService {
 
    async disable2FA(userId: number): Promise<UpdateResult> {
       return this.userService.disable2FA(userId)
+   }
+   getEnviriable(){
+      return this.configService.get<number>('port')
    }
 }
 
